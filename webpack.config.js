@@ -34,7 +34,15 @@ module.exports = {
         }
     },
     module: {
-        rules: [{ test: /\.tsx?$/, loader: "ts-loader" }]
+        rules: [
+            { test: /\.tsx?$/, loader: "ts-loader" },
+            { test: /\.css/, use: ['style-loader', 'css-loader'] },
+            { test: /\.(png|jpg|gif)($|\?.+)/, loader: 'url-loader?limit=10&name=img/[name].[ext]' },
+            {
+                test: /\.svg($|\?.+)/,
+                loader: 'svg-url-loader?limit=10&noquotes=true&name=img/[name].[ext]',
+            },
+        ],
     },
     plugins: [
         new CopyWebpackPlugin([
